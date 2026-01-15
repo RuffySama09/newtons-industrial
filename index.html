@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEWTON'S | HAL 2nd Stage</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --rust: #C64928;       /* Appetizing Accent */
+            --carbon: #181818;     /* Dark Background */
+            --concrete: #222222;   /* Card Background */
+            --smoke: #E0E0E0;      /* Text */
+        }
+
+        /* 1. BASE SETUP */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            background-color: var(--carbon);
+            color: var(--smoke);
+            font-family: 'Source Sans Pro', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .brand-font { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* 2. LOADER (Simple & Fast) */
+        #loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--carbon); z-index: 9999;
+            display: flex; justify-content: center; align-items: center;
+            transition: opacity 0.5s ease;
+        }
+        .loader-bar { width: 50px; height: 3px; background: var(--rust); animation: load 1s infinite ease-in-out; }
+        @keyframes load { 0%, 100% { width: 50px; } 50% { width: 150px; } }
+
+        /* 3. NAVIGATION (Sticky & Solid) */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 20px 50px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(24, 24, 24, 0.95);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            z-index: 1000;
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; color: #fff; }
+        .logo span { color: var(--rust); }
+        .nav-cta {
+            padding: 10px 25px; border: 1px solid var(--rust); color: var(--rust);
+            text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.3s;
+        }
+        .nav-cta:hover { background: var(--rust); color: #fff; }
+
+        /* 4. HERO SECTION (Parallax) */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(24, 24, 24, 1)),
+                        url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1920&auto=format&fit=crop');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+        .hero-content h1 { font-size: clamp(3rem, 6vw, 5rem); line-height: 1.1; margin-bottom: 20px; color: #fff; }
+        .hero-content p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px; opacity: 0.8; }
+        .btn-primary {
+            background: var(--rust); color: #fff; padding: 15px 40px; 
+            text-decoration: none; font-weight: 700; display: inline-block;
+            transition: 0.3s; letter-spacing: 1px;
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(198, 73, 40, 0.3); }
+
+        /* 5. MENU GRID (Masonry Style) */
+        .menu-section { padding: 100px 5%; max-width: 1400px; margin: 0 auto; }
+        .section-header { margin-bottom: 60px; border-left: 4px solid var(--rust); padding-left: 20px; }
+        .section-header h2 { font-size: 3rem; color: #fff; }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-card {
+            background: var(--concrete);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            position: relative;
+            group: hover;
+        }
+        .menu-card:hover { transform: translateY(-5px); }
+
+        .card-img-box { height: 250px; overflow: hidden; position: relative; }
+        .card-img { 
+            width: 100%; height: 100%; object-fit: cover; 
+            transition: transform 0.5s ease;
+        }
+        .menu-card:hover .card-img { transform: scale(1.1); }
+
+        .card-details { padding: 25px; }
+        .card-title { font-size: 1.4rem; color: #fff; margin-bottom: 8px; font-weight: 500; }
+        .card-desc { font-size: 0.95rem; color: #aaa; margin-bottom: 15px; line-height: 1.5; }
+        .card-price { color: var(--rust); font-weight: 700; font-size: 1.2rem; font-family: 'Oswald', sans-serif; }
+
+        /* 6. VIBE / INFO SECTION */
+        .info-section { 
+            background: #222; 
+            padding: 80px 5%; 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 50px; 
+            align-items: center;
+        }
+        .info-text h3 { font-size: 2.5rem; margin-bottom: 20px; color: #fff; }
+        .info-text p { margin-bottom: 20px; color: #ccc; line-height: 1.8; }
+        
+        .info-img { 
+            width: 100%; border-radius: 4px; 
+            box-shadow: 20px 20px 0 var(--rust);
+        }
+
+        /* 7. FOOTER */
+        footer { background: #000; padding: 60px 5%; text-align: center; border-top: 1px solid #333; }
+        .footer-logo { font-size: 2rem; font-weight: 700; color: #fff; margin-bottom: 20px; display: inline-block; }
+        .footer-links p { margin-bottom: 10px; color: #888; }
+        .map-link { color: var(--rust); text-decoration: none; font-weight: 600; border-bottom: 1px solid var(--rust); }
+
+        /* MOBILE FIXES */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 3rem; }
+            .info-section { grid-template-columns: 1fr; }
+            .info-img { margin-top: 30px; box-shadow: 10px 10px 0 var(--rust); }
+            nav { padding: 15px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loader"><div class="loader-bar"></div></div>
+
+    <nav>
+        <div class="logo">NEWTON'S <span>BAR</span></div>
+        <a href="tel:08025225225" class="nav-cta">BOOK TABLE</a>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="brand-font">OLD BANGALORE.<br>NEW TASTE.</h1>
+            <p>The neighborhood classic. Authentic North Indian cuisine and ice-cold draughts on HAL 2nd Stage.</p>
+            <a href="#menu" class="btn-primary">EXPLORE MENU</a>
+        </div>
+    </header>
+
+    <section id="menu" class="menu-section">
+        <div class="section-header">
+            <h2>OUR SIGNATURES</h2>
+            <p>Curated favorites. No filler.</p>
+        </div>
+
+        <div class="grid-container">
+            <div class="menu-card">
+                <div class="card-img-box">
+                    <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?q=80&w=600&auto=format&fit=crop" class="card-img" alt="Butter Chicken" onerror="this.src='https://via.placeholder.com/600x400/333/fff?text=Butter+Chicken'">
+                </div>
+                <div class="card-details">
+                    <h3 class="card-title brand-font">BUTTER CHICKEN</h3>
+                    <p class="card-desc">The local legend. Smoky tandoori chicken simmered in a rich, creamy tomato gravy.</p>
+                    <span class="card-price">₹320</span>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="card-img-box">
+                    <img src="https://images.unsplash.com/photo-1585937421612-70a008356f36?q=80&w=600&auto=format&fit=crop" class="card-img" alt="Mutton Curry" onerror="this.src='https://via.placeholder.com/600x400/333/fff?text=Mutton+Curry'">
+                </div>
+                <div class="card-details">
+                    <h3 class="card-title brand-font">MUTTON ROGAN JOSH</h3>
+                    <p class="card-desc">Tender mutton pieces slow-cooked with aromatic Kashmiri spices.</p>
+                    <span class="card-price">₹380</span>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="card-img-box">
+                    <img src="https://images.unsplash.com/photo-1599487484698-8860b89728b5?q=80&w=600&auto=format&fit=crop" class="card-img" alt="Kebab Platter" onerror="this.src='https://via.placeholder.com/600x400/333/fff?text=Tandoori+Platter'">
+                </div>
+                <div class="card-details">
+                    <h3 class="card-title brand-font">TANDOORI PLATTER</h3>
+                    <p class="card-desc">The ultimate starter. Assortment of Chicken Tikka, Seekh Kebabs, and Prawns.</p>
+                    <span class="card-price">₹550</span>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="card-img-box">
+                    <img src="https://images.unsplash.com/photo-1612528443702-f674015b6753?q=80&w=600&auto=format&fit=crop" class="card-img" alt="Draught Beer" onerror="this.src='https://via.placeholder.com/600x400/333/fff?text=Beer'">
+                </div>
+                <div class="card-details">
+                    <h3 class="card-title brand-font">DRAUGHT BEER</h3>
+                    <p class="card-desc">Ice cold mug (500ml). The perfect companion to our spicy starters.</p>
+                    <span class="card-price">₹180</span>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="card-img-box">
+                    <img src="https://images.unsplash.com/photo-1567188040754-5835e0594991?q=80&w=600&auto=format&fit=crop" class="card-img" alt="Veg Kebab" onerror="this.src='https://via.placeholder.com/600x400/333/fff?text=Veg+Starter'">
+                </div>
+                <div class="card-details">
+                    <h3 class="card-title brand-font">HARA BHARA KEBAB</h3>
+                    <p class="card-desc">Spinach and green pea patties, shallow fried. A vegetarian classic.</p>
+                    <span class="card-price">₹240</span>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="card-img-box">
+                    <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?q=80&w=600&auto=format&fit=crop" class="card-img" alt="Dal Makhani" onerror="this.src='https://via.placeholder.com/600x400/333/fff?text=Dal+Makhani'">
+                </div>
+                <div class="card-details">
+                    <h3 class="card-title brand-font">DAL MAKHANI</h3>
+                    <p class="card-desc">Black lentils simmered overnight with butter and cream.</p>
+                    <span class="card-price">₹240</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <div class="info-text">
+            <h3 class="brand-font">THE ROOFTOP VIBE</h3>
+            <p>Escape the noise of Old Airport Road. Our open-air section offers a cool breeze and a relaxed atmosphere, perfect for family dinners or catching up with old friends.</p>
+            <p>We believe in honest food, fair prices, and service that makes you feel like a regular from day one.</p>
+        </div>
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1000&auto=format&fit=crop" class="info-img" alt="Rooftop" onerror="this.src='https://via.placeholder.com/800x600/333/fff?text=Rooftop+View'">
+    </section>
+
+    <footer>
+        <div class="footer-logo brand-font">NEWTON'S</div>
+        <div class="footer-links">
+            <p>4121/Q, HAL Old Airport Rd, HAL 2nd Stage, Bengaluru 560008</p>
+            <p>Open Daily: 11:30 AM – 11:30 PM</p>
+            <br>
+            <a href="https://maps.app.goo.gl/3yXA1EhcHuxvNiUs7" class="map-link">GET DIRECTIONS</a>
+        </div>
+        <p style="margin-top: 40px; font-size: 0.8rem; color: #444;">© 2026 NEWTON'S RESTO BAR</p>
+    </footer>
+
+    <script>
+        // FAIL-SAFE LOADER REMOVAL
+        // Ensures the site always loads within 1 second max.
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            loader.style.opacity = '0';
+            setTimeout(() => { loader.style.display = 'none'; }, 500);
+        });
+
+        // Backup timer in case 'load' event hangs
+        setTimeout(() => {
+            const loader = document.getElementById('loader');
+            if(loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => { loader.style.display = 'none'; }, 500);
+            }
+        }, 1500);
+    </script>
+
+</body>
+</html>
