@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEWTON'S | HAL 2nd Stage</title>
+    <title>NEWTON'S | Classic Resto Bar</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -39,7 +39,7 @@
         .loader-bar { width: 50px; height: 3px; background: var(--rust); animation: load 1s infinite ease-in-out; }
         @keyframes load { 0%, 100% { width: 50px; } 50% { width: 150px; } }
 
-        /* 3. NAVIGATION (Sticky & Solid) */
+        /* 3. NAVIGATION */
         nav {
             position: fixed; top: 0; width: 100%; padding: 20px 50px;
             display: flex; justify-content: space-between; align-items: center;
@@ -55,10 +55,11 @@
         }
         .nav-cta:hover { background: var(--rust); color: #fff; }
 
-        /* 4. HERO SECTION (Parallax) */
+        /* 4. HERO SECTION */
         .hero {
             height: 90vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(24, 24, 24, 1)),
+            /* RELIABLE BACKGROUND IMAGE */
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(24, 24, 24, 1)),
                         url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1920&auto=format&fit=crop');
             background-attachment: fixed;
             background-size: cover;
@@ -76,7 +77,7 @@
         }
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(198, 73, 40, 0.3); }
 
-        /* 5. MENU GRID (Masonry Style) */
+        /* 5. MENU GRID */
         .menu-section { padding: 100px 5%; max-width: 1400px; margin: 0 auto; }
         .section-header { margin-bottom: 60px; border-left: 4px solid var(--rust); padding-left: 20px; }
         .section-header h2 { font-size: 3rem; color: #fff; }
@@ -92,23 +93,23 @@
             overflow: hidden;
             transition: transform 0.3s ease;
             position: relative;
-            group: hover;
         }
         .menu-card:hover { transform: translateY(-5px); }
 
-        .card-img-box { height: 250px; overflow: hidden; position: relative; }
+        .card-img-box { height: 250px; overflow: hidden; position: relative; background: #000; }
         .card-img { 
             width: 100%; height: 100%; object-fit: cover; 
             transition: transform 0.5s ease;
+            opacity: 0.9;
         }
-        .menu-card:hover .card-img { transform: scale(1.1); }
+        .menu-card:hover .card-img { transform: scale(1.1); opacity: 1; }
 
         .card-details { padding: 25px; }
         .card-title { font-size: 1.4rem; color: #fff; margin-bottom: 8px; font-weight: 500; }
         .card-desc { font-size: 0.95rem; color: #aaa; margin-bottom: 15px; line-height: 1.5; }
         .card-price { color: var(--rust); font-weight: 700; font-size: 1.2rem; font-family: 'Oswald', sans-serif; }
 
-        /* 6. VIBE / INFO SECTION */
+        /* 6. INFO SECTION */
         .info-section { 
             background: #222; 
             padding: 80px 5%; 
@@ -151,7 +152,7 @@
 
     <header class="hero">
         <div class="hero-content">
-            <h1 class="brand-font">OLD BANGALORE.<br>NEW TASTE.</h1>
+            <h1 class="brand-font">CLASSIC TASTES.<br>GOOD TIMES.</h1>
             <p>The neighborhood classic. Authentic North Indian cuisine and ice-cold draughts on HAL 2nd Stage.</p>
             <a href="#menu" class="btn-primary">EXPLORE MENU</a>
         </div>
@@ -166,7 +167,7 @@
         <div class="grid-container">
             <div class="menu-card">
                 <div class="card-img-box">
-                    <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?q=80&w=600&auto=format&fit=crop" class="card-img" alt="Butter Chicken" onerror="this.src='https://via.placeholder.com/600x400/333/fff?text=Butter+Chicken'">
+                    <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img" alt="Butter Chicken">
                 </div>
                 <div class="card-details">
                     <h3 class="card-title brand-font">BUTTER CHICKEN</h3>
@@ -177,7 +178,7 @@
 
             <div class="menu-card">
                 <div class="card-img-box">
-                    <img src="https://images.unsplash.com/photo-1585937421612-70a008356f36?q=80&w=600&auto=format&fit=crop" class="card-img" alt="Mutton Curry" onerror="this.src='https://via.placeholder.com/600x400/333/fff?text=Mutton+Curry'">
+                    <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img" alt="Mutton Curry">
                 </div>
                 <div class="card-details">
                     <h3 class="card-title brand-font">MUTTON ROGAN JOSH</h3>
@@ -188,7 +189,7 @@
 
             <div class="menu-card">
                 <div class="card-img-box">
-                    <img src="https://images.unsplash.com/photo-1599487484698-8860b89728b5?q=80&w=600&auto=format&fit=crop" class="card-img" alt="Kebab Platter" onerror="this.src='https://via.placeholder.com/600x400/333/fff?text=Tandoori+Platter'">
+                    <img src="https://images.unsplash.com/photo-1599487484698-8860b89728b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img" alt="Kebab Platter">
                 </div>
                 <div class="card-details">
                     <h3 class="card-title brand-font">TANDOORI PLATTER</h3>
@@ -199,7 +200,7 @@
 
             <div class="menu-card">
                 <div class="card-img-box">
-                    <img src="https://images.unsplash.com/photo-1612528443702-f674015b6753?q=80&w=600&auto=format&fit=crop" class="card-img" alt="Draught Beer" onerror="this.src='https://via.placeholder.com/600x400/333/fff?text=Beer'">
+                    <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img" alt="Draught Beer">
                 </div>
                 <div class="card-details">
                     <h3 class="card-title brand-font">DRAUGHT BEER</h3>
@@ -210,7 +211,7 @@
 
             <div class="menu-card">
                 <div class="card-img-box">
-                    <img src="https://images.unsplash.com/photo-1567188040754-5835e0594991?q=80&w=600&auto=format&fit=crop" class="card-img" alt="Veg Kebab" onerror="this.src='https://via.placeholder.com/600x400/333/fff?text=Veg+Starter'">
+                    <img src="https://images.unsplash.com/photo-1567188040754-5835e0594991?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img" alt="Veg Kebab">
                 </div>
                 <div class="card-details">
                     <h3 class="card-title brand-font">HARA BHARA KEBAB</h3>
@@ -221,7 +222,7 @@
 
             <div class="menu-card">
                 <div class="card-img-box">
-                    <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?q=80&w=600&auto=format&fit=crop" class="card-img" alt="Dal Makhani" onerror="this.src='https://via.placeholder.com/600x400/333/fff?text=Dal+Makhani'">
+                    <img src="https://images.unsplash.com/photo-1585937421612-70a008356f36?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img" alt="Dal Makhani">
                 </div>
                 <div class="card-details">
                     <h3 class="card-title brand-font">DAL MAKHANI</h3>
@@ -234,11 +235,11 @@
 
     <section class="info-section">
         <div class="info-text">
-            <h3 class="brand-font">THE ROOFTOP VIBE</h3>
-            <p>Escape the noise of Old Airport Road. Our open-air section offers a cool breeze and a relaxed atmosphere, perfect for family dinners or catching up with old friends.</p>
+            <h3 class="brand-font">THE CLASSIC VIBE</h3>
+            <p>Escape the noise of Old Airport Road. Step into a place that feels like old Bangalore—where the food is authentic, the drinks are cold, and the conversations last for hours.</p>
             <p>We believe in honest food, fair prices, and service that makes you feel like a regular from day one.</p>
         </div>
-        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1000&auto=format&fit=crop" class="info-img" alt="Rooftop" onerror="this.src='https://via.placeholder.com/800x600/333/fff?text=Rooftop+View'">
+        <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="info-img" alt="Restaurant Interior">
     </section>
 
     <footer>
@@ -253,22 +254,14 @@
     </footer>
 
     <script>
-        // FAIL-SAFE LOADER REMOVAL
-        // Ensures the site always loads within 1 second max.
-        window.addEventListener('load', () => {
+        // LOADER: Forces removal after 0.5s to prevent getting stuck
+        window.onload = function() {
             const loader = document.getElementById('loader');
             loader.style.opacity = '0';
             setTimeout(() => { loader.style.display = 'none'; }, 500);
-        });
-
-        // Backup timer in case 'load' event hangs
-        setTimeout(() => {
-            const loader = document.getElementById('loader');
-            if(loader) {
-                loader.style.opacity = '0';
-                setTimeout(() => { loader.style.display = 'none'; }, 500);
-            }
-        }, 1500);
+        };
+        // Backup safety
+        setTimeout(() => { document.getElementById('loader').style.display = 'none'; }, 2000);
     </script>
 
 </body>
